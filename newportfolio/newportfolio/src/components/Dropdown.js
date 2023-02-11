@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
   import { StyleSheet, View } from 'react-native';
   import { MultiSelect } from 'react-native-element-dropdown';
-  
+  import { useDispatch } from 'react-redux';
+  import {addTodo} from '../Redux/todoslice';
 
   const data = [
     { label: 'React', value: 'React' },
@@ -16,6 +17,13 @@ import React, { useState } from 'react';
 
   const MultiSelectComponent = () => {
     const [selected, setSelected] = useState([]);
+    const [focus,setFocus]=useState(1);
+
+    const dispatch=useDispatch();
+
+    
+      
+    
 
     return (
       <View style={styles.container}>
@@ -31,10 +39,13 @@ import React, { useState } from 'react';
           valueField="value"
           placeholder="Select Technology"
           searchPlaceholder="Search..."
-         
+          
+          onBlur={()=>dispatch(addTodo({tech:selected}))}
+
           value={selected}
           onChange={item => {
             setSelected(item);
+           
           }}
         //   renderLeftIcon={() => (
         //     <AntDesign

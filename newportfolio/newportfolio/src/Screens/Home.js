@@ -1,16 +1,28 @@
-import {View, Text, StyleSheet, TextInput,TouchableOpacity } from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, TextInput,TouchableOpacity,Button } from 'react-native';
+import React  from 'react';
 import MultiSelectComponent from '../components/Dropdown';
 import Mylocation from '../components/Geolocation';
-
-import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import {addTodo} from '../Redux/todoslice';
+import {useCallback, useState} from 'react';
+import { useSelector } from 'react-redux';
 
 
 
 const Home = ({navigation}) => {
-  const [name,setName]=useState(null)
+ 
+  const [name,setName]=useState()
   const [age,setAge]=useState(null);
+  const dispatch=useDispatch()
+  const handleSubmit =()=>{
+    dispatch(addTodo({name,age,}));
+    setName('');
+    setAge('');
+  }
+  // console.log(name)
 
+  const todo=useSelector(state=>state.todo.items);
+  console.log(todo)
 
   return (
     <View style={{backgroundColor: '#fcef', flex: 1}}>
@@ -19,7 +31,7 @@ const Home = ({navigation}) => {
 
       <TextInput placeholder="Enter your name here" style={styles.inp} value={name} onChangeText={setName}   />
       <TextInput placeholder="Enter your age here" style={styles.inp}  onChangeText={setAge} value={age} />
-      <MultiSelectComponent/>
+      <MultiSelectComponent />
       <Mylocation/>
       
       <TouchableOpacity style={{width:'90%',alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ad3',height:40,borderRadius:10,borderWidth:1,marginTop:10}}
@@ -35,7 +47,7 @@ const Home = ({navigation}) => {
         </TouchableOpacity>
 
         
-
+        <Button onPress={handleSubmit} title="Add" />
     
        
      
