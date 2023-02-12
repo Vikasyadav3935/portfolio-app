@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react';
-import { useSelector } from 'react-redux';
+
 
 const Final = () => {
-
-  const todo=useSelector(state=>state.todo.items);
-  console.log(todo)
+  
+  
+ 
 
   return (
     <View>

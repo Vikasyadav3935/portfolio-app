@@ -20,9 +20,10 @@ const Home = ({navigation}) => {
     setAge('');
   }
   // console.log(name)
-
   const todo=useSelector(state=>state.todo.items);
   console.log(todo)
+
+  
 
   return (
     <View style={{backgroundColor: '#fcef', flex: 1}}>
@@ -30,16 +31,16 @@ const Home = ({navigation}) => {
       <Text style={styles.fill}>Fill the details</Text>
 
       <TextInput placeholder="Enter your name here" style={styles.inp} value={name} onChangeText={setName}   />
-      <TextInput placeholder="Enter your age here" style={styles.inp}  onChangeText={setAge} value={age} />
+      <TextInput placeholder="Enter your age here" style={styles.inp}  onChangeText={setAge} value={age} keyboardType='numeric' />
       <MultiSelectComponent />
       <Mylocation/>
       
       <TouchableOpacity style={{width:'90%',alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ad3',height:40,borderRadius:10,borderWidth:1,marginTop:10}}
-      onPress={()=>navigation.navigate('TakePhotoScreen',{
-        name:name,
-        age:age,
+      onPress={()=>{
         
-      })} 
+        navigation.navigate('TakePhotoScreen')
+      
+      }} 
       >
             <Text>
             open camera

@@ -12,8 +12,8 @@ const options = {
   // includeBase64: true,
 };
 
-const TakePhotoScreen = ({route}) => {
-  const {name,age} =route.params
+const TakePhotoScreen = () => {
+
 
   const [avatarSource, setAvatarSource] = useState(null);
 
@@ -38,18 +38,14 @@ const TakePhotoScreen = ({route}) => {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{  }}>
      {!avatarSource ?<Button title="Take Photo" onPress={takePhoto}/>: <View>
      <Text style={{fontSize:18,alignSelf:'center'}}>Your Portfolio</Text>
-     <Image source={{uri:avatarSource}} style={{width:200,height:200, borderRadius:100,borderWidth:1}} />
-     <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Name : {todo[0].name}</Text>
-      <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Age : {todo[0].age}</Text>
+     <Image source={{uri:avatarSource}} style={{width:200,height:200, borderRadius:100,borderWidth:1,alignSelf:'center'}} />
+     <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Name : {todo.name}</Text>
+      <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Age : {todo.age}</Text>
       <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Tech Stack :
-       {
-        todo[0].tech.map(el=>(
-          <Text>{el}</Text>
-        ))
-       }
+      
       </Text>
       
       </View>}
