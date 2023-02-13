@@ -40,12 +40,12 @@ import React, { useState } from 'react';
           placeholder="Select Technology"
           searchPlaceholder="Search..."
           
-          onBlur={()=>dispatch(addTodo({tech:selected}))}
+          // onBlur={()=>dispatch(addTodo({tech:selected}))}
 
           value={selected}
           onChange={item => {
             setSelected(item);
-           
+            dispatch(addTodo({tech:selected}))
           }}
         //   renderLeftIcon={() => (
         //     <AntDesign

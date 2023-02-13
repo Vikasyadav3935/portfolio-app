@@ -2,10 +2,14 @@ import { View, Text,Button,PermissionsAndroid ,TouchableOpacity} from 'react-nat
 import React from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo} from '../Redux/todoslice';
+
 
 const Mylocation = () => {
   
     const [location, setLocation] = useState(false);
+    const dispatch=useDispatch()
 
     const requestLocationPermission = async () => {
         try {
@@ -56,11 +60,15 @@ const Mylocation = () => {
       };
 
 
-
+    
 
   return (
     <View>
-        <TouchableOpacity style={{width:'90%',alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ad3',height:40,borderRadius:10,borderWidth:1}}>
+        <TouchableOpacity style={{marginTop:10,width:'90%',alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ad3',height:40,borderRadius:10,borderWidth:1}}
+        onPress={()=>{
+          getLocation()
+          dispatch(addTodo({location:location}))}}
+        >
             <Text>
                 Add location to your portfolio
             </Text>

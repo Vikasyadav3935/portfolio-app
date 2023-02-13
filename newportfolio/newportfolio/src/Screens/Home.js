@@ -3,7 +3,7 @@ import React  from 'react';
 import MultiSelectComponent from '../components/Dropdown';
 import Mylocation from '../components/Geolocation';
 import { useDispatch } from 'react-redux';
-import {addTodo} from '../Redux/todoslice';
+import { addTodo} from '../Redux/todoslice';
 import {useCallback, useState} from 'react';
 import { useSelector } from 'react-redux';
 
@@ -11,13 +11,18 @@ import { useSelector } from 'react-redux';
 
 const Home = ({navigation}) => {
  
-  const [name,setName]=useState()
-  const [age,setAge]=useState(null);
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [tech, setTech] = useState('');
   const dispatch=useDispatch()
   const handleSubmit =()=>{
-    dispatch(addTodo({name,age,}));
+    dispatch(addTodo({ name, age: Number(age), tech: tech.split(',') }));
     setName('');
     setAge('');
+    setTech('');
+
+   
+   
   }
   // console.log(name)
   const todo=useSelector(state=>state.todo.items);
@@ -32,14 +37,14 @@ const Home = ({navigation}) => {
 
       <TextInput placeholder="Enter your name here" style={styles.inp} value={name} onChangeText={setName}   />
       <TextInput placeholder="Enter your age here" style={styles.inp}  onChangeText={setAge} value={age} keyboardType='numeric' />
-      <MultiSelectComponent />
+      <TextInput placeholder="Enter your Tech Stack here" style={styles.inp} value={tech} onChangeText={setTech}   />
       <Mylocation/>
       
       <TouchableOpacity style={{width:'90%',alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ad3',height:40,borderRadius:10,borderWidth:1,marginTop:10}}
       onPress={()=>{
         
         navigation.navigate('TakePhotoScreen')
-      
+        handleSubmit()
       }} 
       >
             <Text>
@@ -48,7 +53,7 @@ const Home = ({navigation}) => {
         </TouchableOpacity>
 
         
-        <Button onPress={handleSubmit} title="Add" />
+        {/* <Button onPress={handleSubmit} title="Add" /> */}
     
        
      

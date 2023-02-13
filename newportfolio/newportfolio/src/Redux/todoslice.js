@@ -4,24 +4,22 @@ const todoslice= createSlice(
     {
    name:'todo',
    initialState:{
-    items:{
-        id:0,
-        name:'',
-        age:'',
-        tech:''
-    }
+    items:[]
    },
    reducers:{
     addTodo:(state,action)=>{
-    state.items={
-        ...state.items,
-        
-        id: Math.random(),
+    state.items.push({
+       
+       
+        id: state.items.length + 1,
         name: action.payload.name,
         age: action.payload.age,
-         tech:action.payload.tech,
-      }
-    },
+        tech: action.payload.tech,
+        location: action.payload.location,
+       
+        
+      })
+    }
 
    }
 

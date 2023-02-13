@@ -38,14 +38,17 @@ const TakePhotoScreen = () => {
   };
 
   return (
-    <View style={{  }}>
-     {!avatarSource ?<Button title="Take Photo" onPress={takePhoto}/>: <View>
-     <Text style={{fontSize:18,alignSelf:'center'}}>Your Portfolio</Text>
-     <Image source={{uri:avatarSource}} style={{width:200,height:200, borderRadius:100,borderWidth:1,alignSelf:'center'}} />
-     <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Name : {todo.name}</Text>
-      <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Age : {todo.age}</Text>
-      <Text  style={{alignSelf:'center',marginTop:10,fontSize:18}}> Tech Stack :
-      
+    <View style={{ flex:1 }}>
+     {!avatarSource ?<Button title="Take Photo" onPress={takePhoto}/>: <View style={{backgroundColor:'#834',flex:1}}>
+     <Text style={{fontSize:18,alignSelf:'center',color:'#aaf', elevation:3,borderRadius:.3,padding:10,marginBottom:10,fontWeight:'700'}}>Your Portfolio</Text>
+     <View style={{alignSelf:'center',width:200,height:200,borderRadius:100,borderWidth:1,elevation:5,borderColor:'red'}}>
+     <Image source={{uri:avatarSource}} style={{width:198,height:198, borderRadius:100,borderWidth:1,alignSelf:'center',}} />
+      </View>
+     
+     <Text  style={{alignSelf:'center',marginTop:10,fontSize:28,color:'orange'}}> Name : {todo[todo.length-1].name}</Text>
+      <Text  style={{alignSelf:'center',marginTop:10,fontSize:28,color:'orange'}}> Age : {todo[todo.length-1].age}</Text>
+      <Text  style={{alignSelf:'center',marginTop:10,fontSize:28,color:'orange'}}> Tech Stack :
+      {todo[todo.length-1].tech.join(', ')}
       </Text>
       
       </View>}
